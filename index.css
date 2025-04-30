@@ -1,6 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,700";
 
 .centerpage {
+  user-select: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,7 +14,6 @@ p {
 }
 
 .button {
-  user-select: none;
   border-radius: 5px;
   box-sizing: border-box;
   cursor: pointer;
@@ -124,7 +124,6 @@ body {
 #title {
   font-size: 50px;
   text-align: center;
-  user-select: none;
 }
 
 #box {
