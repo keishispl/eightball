@@ -1,505 +1,147 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,700";
 
-html {
-    font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-
 .centerpage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
 }
 
 p {
-    color: rgb(190, 190, 190);
+  color: rgb(190, 190, 190);
 }
 
 .button {
-    user-select: none;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    background-color: transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: rgb(190, 190, 190);
-    cursor: pointer;
-    display: inline-block;
-    font-size: 16px;
-    height: 40px;
-    line-height: 38px;
-    margin: 0.5em;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    margin-right: -7.5px;
-}
-
-.button:link,
-.button:visited,
-.button:active {
-    color: rgb(190, 190, 190);
+  user-select: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 40px;
+  line-height: 38px;
+  margin: 0.5em;
+  width: 150px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  margin-right: -7.5px;
 }
 
 .button:hover {
-    color: rgb(190, 190, 190);
-    background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(190, 190, 190);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .normal {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url("https://keishispl.github.io/img/wallpaper/self_drawn.png");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    z-index: -10;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: block;
-    background-attachment: fixed;
-    left: 0;
-    top: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://keishispl.github.io/img/wallpaper/self_drawn.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  background-attachment: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
 }
 
 .smolpadding {
-    padding: 150px 0px 0px 0px;
-}
-
-.tinypadding {
-    padding: 50px 0px 0px 0px;
-}
-
-.tinypadding2 {
-    padding: 100px 0px 0px 0px;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section,
-summary {
-    display: block;
-}
-
-audio,
-canvas,
-progress,
-video {
-    display: inline-block;
-    vertical-align: baseline;
-}
-
-audio:not([controls]) {
-    display: none;
-    height: 0;
-}
-
-[hidden],
-template {
-    display: none;
-}
-
-a {
-    background-color: transparent;
-}
-
-a:link,
-a:visited,
-a:hover {
-    color: red;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-a:hover {
-    color: purple;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-abbr[title] {
-    border-bottom: 1px dotted;
-}
-
-b,
-strong {
-    font-weight: 700;
-}
-
-dfn {
-    font-style: italic;
-}
-
-h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-}
-
-mark {
-    background: #ff0;
-    color: #000;
-}
-
-small {
-    font-size: 80%;
-}
-
-sub,
-sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-
-sup {
-    top: -0.5em;
-}
-
-sub {
-    bottom: -0.25em;
-}
-
-img {
-    border: 0;
-}
-
-svg:not(:root) {
-    overflow: hidden;
-}
-
-figure {
-    margin: 1em 40px;
-}
-
-hr {
-    box-sizing: content-box;
-    height: 0;
-}
-
-pre {
-    overflow: auto;
-}
-
-code,
-kbd,
-pre,
-samp {
-    font-family: monospace, monospace;
-    font-size: 1em;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-}
-
-button {
-    overflow: visible;
-}
-
-button,
-select {
-    text-transform: none;
-}
-
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-    cursor: pointer;
-}
-
-button[disabled],
-html input[disabled] {
-    cursor: default;
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  padding: 150px 0px 0px 0px;
 }
 
 input {
-    line-height: normal;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  line-height: normal;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    height: auto;
-}
-
-input[type="search"] {
-    box-sizing: content-box;
-}
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-}
-
-fieldset {
-    border: 1px solid silver;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
-}
-
-legend {
-    border: 0;
-    padding: 0;
-}
-
-textarea {
-    overflow: auto;
-}
-
-optgroup {
-    font-weight: 700;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 60px;
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: center;
-    align-items: center;
-    position: relative;
-    width: auto;
-}
-
-td,
-th {
-    padding: 0;
-}
-
-* {
-    box-sizing: border-box;
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    font-family: open sans, helvetica neue, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #ababab;
-    overscroll-behavior: none;
+  padding: 0;
+  margin: 0;
+  font-family: open sans;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ababab;
+  overscroll-behavior: none;
 }
 
-.btn {
-    display: inline-block;
-    margin-bottom: 1rem;
-    color: red;
-    background-color: transparent;
-    border-color: red;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0.3rem;
-    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
-}
-
-.btn:hover {
-    color: purple;
-    text-decoration: none;
-    background-color: transparent;
-    border-color: purple;
-}
-
-.btn+.btn {
-    margin-left: 1rem;
-}
-
-@media screen and (min-width: 64em) {
-    .btn {
-        padding: 0.75rem 1rem;
-    }
-}
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-    .btn {
-        padding: 0.6rem 0.9rem;
-        font-size: 0.9rem;
-    }
-}
-
-@media screen and (max-width: 42em) {
-    .btn {
-        display: block;
-        width: 100%;
-        padding: 0.75rem;
-        font-size: 0.9rem;
-    }
-
-    .btn+.btn {
-        margin-top: 1rem;
-        margin-left: 0;
-    }
-}
-
-.site-footer-owner {
-    display: block;
-    font-weight: 700;
-}
-
-ul {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    align-items: center;
-}
-
-a.select,
-a.selected,
-a.selectdisabled {
-    text-decoration: none;
-    font-size: 16px;
-    padding: 5px 15px;
-    text-align: center;
-}
-
-li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
+.box,
+.smolbox,
 #question {
-    user-select: none;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    background-color: transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: rgb(190, 190, 190);
-    display: inline-block;
-    height: 40px;
-    line-height: 38px;
-    margin: 0.5em;
-    width: 100%;
-    text-align: left;
-    text-decoration: none;
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    padding-left: 10px;
-}
-#question:focus {
-    outline: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  background-color: transparent;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: rgb(190, 190, 190);
+  display: inline-block;
+  margin: 0.5em;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  overflow-y: scroll;
 }
 
 .box {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    background-color: transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: rgb(190, 190, 190);
-    display: inline-block;
-    height: 200px;
-    margin: 0.5em;
-    width: 100%;
-    text-align: left;
-    text-decoration: none;
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    overflow-y: scroll;
+  height: 200px;
 }
+
 .smolbox {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    background-color: transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: rgb(190, 190, 190);
-    display: inline-block;
-    height: 75px;
-    line-height: 38px;
-    margin: 0.5em;
-    width: 100%;
-    text-align: left;
-    text-decoration: none;
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    overflow-y: scroll;
+  height: 75px;
+}
+
+#question {
+  height: 40px;
+  line-height: 38px;
+  padding-left: 10px;
+}
+
+#question:focus {
+  outline: none;
 }
 
 .together {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 #title {
-    font-size: 50px;
-    text-align: center;
-    user-select: none;
-}
-
-#recent {
-    margin: 0px 0px 0px 0px;
-    margin-left: 10px;
+  font-size: 50px;
+  text-align: center;
+  user-select: none;
 }
 
 #box {
-    margin: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
 }
 
 #resultQuestion {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
+
+#recent,
 #resultResult {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: -10px;
-    margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
