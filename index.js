@@ -1,26 +1,15 @@
-function getLang() {
-     var obj = {
-          starterPath: "",
-          lang: ""
-     };
-
-     obj.starterPath = window.location.pathname.startsWith("/eightball") ? "/eightball" : "";
-     obj.lang = window.location.pathname.replace("/index.html", "");
-     obj.lang = obj.lang === "/" ? "en" : obj.lang.substring(1, 3);
-
-     return obj;
+function getJSON() {
+     var request = new XMLHttpRequest();
+     request.open("GET", `settings.json`, false);
+     request.send(null);
+     return JSON.parse(request.responseText);
 }
 
 /**
  * Sets up the HTML structure for the Eightball app.
  */
 function setupHTML() {
-     const { starterPath, lang } = getLang();
-     var request = new XMLHttpRequest();
-     request.open("GET", `${starterPath}/lang.json`, false);
-     request.send(null);
-     const array = JSON.parse(request.responseText);
-     const obj = array[lang];
+     const { key } = getJSON();
 
      // Get the body element
      const body = document.querySelector("body");
@@ -34,7 +23,7 @@ function setupHTML() {
      // Create and append the title
      const title = document.createElement("h1");
      title.id = "title";
-     title.textContent = obj.title;
+     title.textContent = key.title;
      content.appendChild(title);
 
      // Create and append a tiny padding element
@@ -50,7 +39,7 @@ function setupHTML() {
      // Create and append the input field
      const input = document.createElement("input");
      input.type = "text";
-     input.placeholder = obj.input;
+     input.placeholder = key.input;
      input.id = "question";
      input.autocomplete = "off";
      askDiv.appendChild(input);
@@ -59,7 +48,7 @@ function setupHTML() {
      const button = document.createElement("a");
      button.className = "button";
      button.id = "button";
-     button.textContent = obj.button;
+     button.textContent = key.button;
      askDiv.appendChild(button);
 
      // Create and append the box for displaying results
@@ -75,7 +64,7 @@ function setupHTML() {
      // Create and append a label for the most recent output
      const recentBoxText = document.createElement("p");
      recentBoxText.id = "recent";
-     recentBoxText.textContent = obj.recent;
+     recentBoxText.textContent = key.recent;
      content.appendChild(recentBoxText);
 
      // Create and append a smaller box for recent results
@@ -104,17 +93,13 @@ setupHTML();
  */
 function getRandomEightballElement(number = -1) {
      // Load and parse the JSON file
-     var { starterPath, lang } = getLang();
-     var request = new XMLHttpRequest();
-     request.open("GET", `${starterPath}/results/${lang}.json`, false);
-     request.send(null);
-     const array = JSON.parse(request.responseText);
+     var { eightball } = getJSON();
 
      // If a specific index is provided, return the response at that index
-     if (number !== -1) return array[number];
+     if (number !== -1) return eightball[number];
 
      // Otherwise, return a random response from the array
-     return array[Math.floor(Math.random() * array.length)];
+     return eightball[Math.floor(Math.random() * eightball.length)];
 };
 
 /**
