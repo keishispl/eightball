@@ -1,0 +1,14 @@
+{
+     "en": {
+          "title": "Eightball",
+          "input": "What would you like to ask?",
+          "button": "Ask",
+          "recent": "Most recent output from this session"
+     },
+     "ja": {
+          "title": "エイトボール占い",
+          "input": "何を聞きたいですか？",
+          "button": "尋ねる",
+          "recent": "このセッションからの最新出力"
+     }
+}
