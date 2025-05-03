@@ -100,10 +100,12 @@ body {
 
 .box {
   height: 200px;
+  user-select: text;
 }
 
 .smolbox {
   height: 75px;
+  user-select: text;
 }
 
 #question {

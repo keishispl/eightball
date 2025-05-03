@@ -108,6 +108,11 @@ function runEightball() {
 
      // Get the box element
      const box = document.getElementById("box");
+     // Get the box element
+     const boxDiv = document.querySelector(".box");
+
+     // Check if the box is scrolled to the bottom
+     const scroll = boxDiv.scrollHeight - boxDiv.offsetHeight - boxDiv.scrollTop < 33 ? true : false;
 
      // Get the elements for the recent question and result
      const resultQuestion = document.getElementById("resultQuestion");
@@ -126,6 +131,12 @@ function runEightball() {
 
      // Clear the question box
      question.value = "";
+
+     // Scroll the box to the bottom if it was already scrolled to the bottom
+     if (scroll === true) {
+          // Use the smooth scrolling behavior to make it look nicer
+          boxDiv.scrollTo({top: boxDiv.scrollHeight, behavior: "smooth"});
+     }
 };
 
 // Add event listener for clicking the ask button
