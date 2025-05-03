@@ -4,7 +4,7 @@ function getLang() {
           lang: ""
      };
 
-     obj.starterPath = window.location.pathname.startsWith("/eightball") ? "eightball" : "";
+     obj.starterPath = window.location.pathname.startsWith("/eightball") ? "/eightball" : "";
      obj.lang = window.location.pathname.replace("/index.html", "");
      obj.lang = obj.lang === "/" ? "en" : obj.lang.substring(1, 3);
 
