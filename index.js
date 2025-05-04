@@ -3,12 +3,13 @@ function getJSON() {
      request.open("GET", `settings.json`, false);
      request.send(null);
      return JSON.parse(request.responseText);
-}
+};
 
 /**
  * Sets up the HTML structure for the Eightball app.
  */
 function setupHTML() {
+     const undef = "???";
      const { key } = getJSON();
 
      // Get the body element
@@ -23,7 +24,7 @@ function setupHTML() {
      // Create and append the title
      const title = document.createElement("h1");
      title.id = "title";
-     title.textContent = key.title;
+     title.textContent = document.title;
      content.appendChild(title);
 
      // Create and append a tiny padding element
@@ -39,7 +40,7 @@ function setupHTML() {
      // Create and append the input field
      const input = document.createElement("input");
      input.type = "text";
-     input.placeholder = key.input;
+     input.placeholder = key.input ?? undef;
      input.id = "question";
      input.autocomplete = "off";
      askDiv.appendChild(input);
@@ -48,7 +49,7 @@ function setupHTML() {
      const button = document.createElement("a");
      button.className = "button";
      button.id = "button";
-     button.textContent = key.button;
+     button.textContent = key.button ?? undef;
      askDiv.appendChild(button);
 
      // Create and append the box for displaying results
@@ -64,7 +65,7 @@ function setupHTML() {
      // Create and append a label for the most recent output
      const recentBoxText = document.createElement("p");
      recentBoxText.id = "recent";
-     recentBoxText.textContent = key.recent;
+     recentBoxText.textContent = key.recent ?? undef;
      content.appendChild(recentBoxText);
 
      // Create and append a smaller box for recent results

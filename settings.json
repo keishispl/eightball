@@ -1,6 +1,5 @@
 {
      "key": {
-          "title": "Eightball",
           "input": "What would you like to ask?",
           "button": "Ask",
           "recent": "Most recent output from this session"
