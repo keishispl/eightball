@@ -1,9 +1,45 @@
+/**
+ * Loads the settings JSON file and returns the parsed object.
+ *
+ * @returns {Object} The parsed JSON object from the settings file.
+ */
 function getJSON() {
      var request = new XMLHttpRequest();
      request.open("GET", `settings.json`, false);
      request.send(null);
      return JSON.parse(request.responseText);
 };
+
+/**
+ * Creates a new HTML object and sets its properties before appending it to a given body.
+ *
+ * @param {HTMLElement} body - The body element to append the new HTML object to.
+ * @param {string} item - The type of HTML object to create.
+ * @param {Array} object - An array containing the properties of the new HTML object. Currently, the properties supported are:
+ * - id
+ * - className
+ * - textContent
+ * @param {Array} [extras] - An array containing extra properties to set on the new HTML object. The property names are the names of the attributes to set, and the values are the values to set them to.
+ * @param {boolean} [returnObject] - Whether to return the new HTML object or not. Defaults to false.
+ * @returns {HTMLElement} - The new HTML object if returnObject is true, otherwise undefined.
+ */
+function setHTMLObject(body, item, object, extras = undefined, returnObject = false) {
+     const htmlObject = document.createElement(item);
+
+     if (object.id !== undefined) htmlObject.id = object.id;
+     if (object.className !== undefined) htmlObject.className = object.className;
+     if (object.textContent !== undefined) htmlObject.textContent = object.textContent;
+
+     if (extras !== undefined) {
+          for (const extra in extras) {
+               htmlObject.setAttribute(extra, extras[extra]);
+          }
+     }
+
+     body.appendChild(htmlObject);
+
+     if (returnObject) return htmlObject;
+}
 
 /**
  * Sets up the HTML structure for the Eightball app.
@@ -16,72 +52,75 @@ function setupHTML() {
      const body = document.querySelector("body");
 
      // Create and append the main content container
-     const content = document.createElement("div");
-     content.id = "content";
-     content.className = "centerpage";
-     body.appendChild(content);
+     const content = setHTMLObject(body, "div", {
+          id: "content",
+          className: "centerpage"
+     }, undefined, true);
 
      // Create and append the title
-     const title = document.createElement("h1");
-     title.id = "title";
-     title.textContent = document.title;
-     content.appendChild(title);
+     setHTMLObject(content, "h1", {
+          id: "title",
+          textContent: document.title
+     });
 
      // Create and append a tiny padding element
-     const tinypadding = document.createElement("div");
-     tinypadding.className = "tinypadding";
-     content.appendChild(tinypadding);
+     setHTMLObject(content, "div", {
+          className: "tinypadding"
+     });
 
      // Create and append a container for the input and button
-     const askDiv = document.createElement("div");
-     askDiv.className = "together";
-     content.appendChild(askDiv);
+     const askDiv = setHTMLObject(content, "div", {
+          className: "together"
+     }, undefined, true);
 
      // Create and append the input field
-     const input = document.createElement("input");
-     input.type = "text";
-     input.placeholder = key.input ?? undef;
-     input.id = "question";
-     input.autocomplete = "off";
-     askDiv.appendChild(input);
+     setHTMLObject(askDiv, "input", {
+          id: "question",
+          className: "tinypadding"
+     },
+     {
+          type: "text",
+          placeholder: key.input ?? undef,
+          autocomplete: "off"
+     });
 
      // Create and append the ask button
-     const button = document.createElement("a");
-     button.className = "button";
-     button.id = "button";
-     button.textContent = key.button ?? undef;
-     askDiv.appendChild(button);
+     setHTMLObject(askDiv, "a", {
+          id: "button",
+          className: "button",
+          textContent: key.button ?? undef
+     });
 
      // Create and append the box for displaying results
-     const box = document.createElement("div");
-     box.className = "box";
-     content.appendChild(box);
+     const box = setHTMLObject(content, "div", {
+          className: "box"
+     }, undefined, true);
 
      // Create and append a paragraph to display questions and answers
-     const boxText = document.createElement("p");
-     boxText.id = "box";
-     box.appendChild(boxText);
+     setHTMLObject(box, "p", {
+          id: "box",
+     });
 
      // Create and append a label for the most recent output
-     const recentBoxText = document.createElement("p");
-     recentBoxText.id = "recent";
-     recentBoxText.textContent = key.recent ?? undef;
-     content.appendChild(recentBoxText);
+     setHTMLObject(content, "p", {
+          id: "recent",
+          textContent: key.recent ?? undef
+     });
 
      // Create and append a smaller box for recent results
-     const recentBox = document.createElement("div");
-     recentBox.className = "smolbox";
-     content.appendChild(recentBox);
+     const recentBox = setHTMLObject(content, "div", {
+          className: "smolbox"
+     }, undefined, true);
 
      // Create and append a paragraph to display the recent question
-     const resultQuestion = document.createElement("p");
-     resultQuestion.id = "resultQuestion";
-     recentBox.appendChild(resultQuestion);
+     setHTMLObject(recentBox, "p", {
+          id: "resultQuestion"
+     });
 
      // Create and append a paragraph to display the recent result
-     const resultResult = document.createElement("p");
-     resultResult.id = "resultResult";
-     recentBox.appendChild(resultResult);
+     setHTMLObject(recentBox, "p", {
+          id: "resultResult"
+     });
 }
 setupHTML();
 
@@ -89,7 +128,7 @@ setupHTML();
  * Loads the list of Eightball responses from a JSON file and returns a random one.
  * If a specific index is provided, returns the response at that index.
  *
- * @param {number} [number=-1] - Optional index to retrieve a specific response.
+ * @param {number} [number] - Optional index to retrieve a specific response.
  * @returns {string} A random or specified Eightball response.
  */
 function getRandomEightballElement(number = -1) {
