@@ -21,7 +21,7 @@ function getJSON() {
  * - textContent
  * @param {Array} [extras] - An array containing extra properties to set on the new HTML object. The property names are the names of the attributes to set, and the values are the values to set them to.
  * @param {boolean} [returnObject] - Whether to return the new HTML object or not. Defaults to false.
- * @returns {HTMLElement} - The new HTML object if returnObject is true, otherwise undefined.
+ * @returns {HTMLElement | void} - The new HTML object if returnObject is true, otherwise undefined.
  */
 function setHTMLObject(body, item, object, extras = undefined, returnObject = false) {
      const htmlObject = document.createElement(item);
@@ -33,13 +33,13 @@ function setHTMLObject(body, item, object, extras = undefined, returnObject = fa
      if (extras !== undefined) {
           for (const extra in extras) {
                htmlObject.setAttribute(extra, extras[extra]);
-          }
-     }
+          };
+     };
 
      body.appendChild(htmlObject);
 
      if (returnObject) return htmlObject;
-}
+};
 
 /**
  * Sets up the HTML structure for the Eightball app.
@@ -144,8 +144,6 @@ function getRandomEightballElement(number = -1) {
 
 /**
  * Runs the Eightball program.
- *
- * @returns {void}
  */
 function runEightball() {
      const question = document.getElementById("question");
