@@ -21,7 +21,7 @@ function getJSON() {
  * - textContent
  * @param {Array} [extras] - An array containing extra properties to set on the new HTML object. The property names are the names of the attributes to set, and the values are the values to set them to.
  * @param {boolean} [returnObject] - Whether to return the new HTML object or not. Defaults to false.
- * @returns {HTMLElement | void} - The new HTML object if returnObject is true, otherwise undefined.
+ * @returns {HTMLElement | void} The new HTML object if returnObject is true, otherwise undefined.
  */
 function setHTMLObject(body, item, object, extras = undefined, returnObject = false) {
      const htmlObject = document.createElement(item);
@@ -89,6 +89,9 @@ function setupHTML() {
           id: "button",
           className: "button",
           textContent: key.button ?? undef
+     },
+     {
+          tabindex: 0
      });
 
      // Create and append the box for displaying results
@@ -179,13 +182,18 @@ function runEightball() {
      // Scroll the box to the bottom if it was already scrolled to the bottom
      if (scroll === true) {
           // Use the smooth scrolling behavior to make it look nicer
-          boxDiv.scrollTo({top: boxDiv.scrollHeight, behavior: "smooth"});
+          boxDiv.scrollTo({ top: boxDiv.scrollHeight, behavior: "smooth" });
      }
 };
 
 // Add event listener for clicking the ask button
 document.getElementById("button").addEventListener("click", function () {
      runEightball();
+});
+document.getElementById("button").addEventListener("keyup", function (event) {
+     if (event.key === "Enter") {
+          runEightball();
+     };
 });
 
 // Add event listener for pressing enter in the question box
