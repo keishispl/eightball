@@ -44,12 +44,12 @@ function setHTMLObject(body, item, object, extras = undefined, returnObject = fa
 /**
  * Sets up the HTML structure for the Eightball app.
  */
-function setupHTML() {
+function setupEightballHTML() {
      const undef = "???";
      const { key } = getJSON();
 
      // Get the body element
-     const body = document.querySelector("body");
+     const body = document.body;
 
      // Create and append the main content container
      const content = setHTMLObject(body, "div", {
@@ -124,8 +124,159 @@ function setupHTML() {
      setHTMLObject(recentBox, "p", {
           id: "resultResult"
      });
+
+     // Create and append a button to open/close the sidebar menu
+     const sidebar = setHTMLObject(body, "button", {
+          id: "btn2"
+     }, undefined, true);
+
+     // Create and append an icon for the sidebar button
+     setHTMLObject(sidebar, "i", {
+          className: "fa-solid fa-bars"
+     });
 }
-setupHTML();
+setupEightballHTML();
+
+/**
+ * Sets up the HTML structure for the sidebar.
+ */
+function setupSidebarHTML() {
+     const undef = "???";
+     const { key } = getJSON();
+
+     // Get the body element
+     const body = document.body;
+
+     // Create and append the main content container
+     const sidebar = setHTMLObject(body, "div", {
+          id: "sidebar"
+     }, undefined, true);
+
+     // Create and append the padding of the sidebar
+     const div = setHTMLObject(sidebar, "div", {}, {
+          style: "padding-right: 25px;"
+     }, true);
+
+     // Create and append the title
+     setHTMLObject(div, "h1", {
+          textContent: "MENU"
+     });
+
+     // Create and append the language selector category
+     setHTMLObject(div, "p", {
+          textContent: key.lang ?? undef
+     });
+
+     // Create and append a line
+     setHTMLObject(div, "p", {
+          className: "line"
+     });
+
+     // Create and append the language selector div
+     setHTMLObject(div, "div", {
+          id: "langlist"
+     });
+}
+setupSidebarHTML();
+
+var lineLength = 30;
+var text = "";
+
+for (var i = 0; i < lineLength; i++) {
+     text += "_";
+};
+
+var lines = document.querySelectorAll('.line');
+for (var i = 0; i < lines.length; i++) {
+     lines[i].innerHTML = text;
+};
+
+const list = document.getElementById('langlist');
+var langlist = {
+     en: "English",
+     ja: "日本語",
+     zh: "中文"
+};
+var pathname = window.location.pathname.replace('/maidkouciana', '').replaceAll('/', '');
+Object.keys(langlist).forEach(lang => {
+     if (pathname === lang) {
+          delete langlist[lang];
+     }
+});
+if (pathname === '') {
+     delete langlist['en'];
+}
+
+Object.keys(langlist).forEach(lang => {
+     function _link(lang) {
+          var ppath = "/";
+          if (window.location.pathname.includes('/maidkouciana')) {
+               ppath = "/maidkouciana/";
+          }
+
+          if (lang === 'en') lang = '';
+
+          var split = window.location.href.split('/');
+          return split[0] + "//" + split[2] + ppath + lang;
+     }
+
+     const wrap = document.createElement('p');
+     list.appendChild(wrap);
+
+     const link = document.createElement('a');
+     link.id = "lang-" + lang;
+     link.innerHTML = langlist[lang];
+     link.href = _link(lang);
+     wrap.appendChild(link);
+});
+
+let menuClosed = true;
+
+/**
+ * Toggles the menu on and off.
+ * @param {boolean} [bool] - Optional boolean that can be used to toggle the menu on or off. If not provided, the function will toggle the menu depending on the current state.
+ */
+function menuToggle(bool) {
+     function toggleOn() {
+          document.body.classList.remove("menu-closed");
+          document.getElementById("btn2").style.right = "310px";
+          menuClosed = false;
+          Object.keys(langlist).forEach(lang => {
+               document.getElementById("lang-" + lang).tabIndex = 0;
+          })
+     }
+     function toggleOff() {
+          document.body.classList.add("menu-closed");
+          document.getElementById("btn2").style.right = "10px";
+          menuClosed = true;
+          Object.keys(langlist).forEach(lang => {
+               document.getElementById("lang-" + lang).tabIndex = -1;
+          })
+     }
+     
+     if (typeof bool !== 'undefined') {
+          if (bool) {
+               toggleOn();
+          } else {
+               toggleOff();
+          }
+     } else {
+          if (menuClosed) {
+               toggleOn();
+          } else {
+               toggleOff();
+          }
+     }
+}
+
+/**
+ * Add an event listener to the btn2 (menu) element.
+ * When the user clicks/press enter on the element, toggle the menu.
+ */
+document.getElementById('btn2').addEventListener('click', () => {
+     menuToggle();
+});
+menuToggle(false);
 
 /**
  * Loads the list of Eightball responses from a JSON file and returns a random one.

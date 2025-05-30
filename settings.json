@@ -2,7 +2,8 @@
      "key": {
           "input": "What would you like to ask?",
           "button": "Ask",
-          "recent": "Most recent output from this session"
+          "recent": "Most recent output from this session",
+          "lang": "Language"
      },
      "eightball": [
           "Ehh.. I'm not sure",
