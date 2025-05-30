@@ -197,7 +197,7 @@ var langlist = {
      ja: "日本語",
      zh: "中文"
 };
-var pathname = window.location.pathname.replace('/maidkouciana', '').replaceAll('/', '');
+var pathname = window.location.pathname.replace('/eightball', '').replaceAll('/', '');
 Object.keys(langlist).forEach(lang => {
      if (pathname === lang) {
           delete langlist[lang];
@@ -210,8 +210,8 @@ if (pathname === '') {
 Object.keys(langlist).forEach(lang => {
      function _link(lang) {
           var ppath = "/";
-          if (window.location.pathname.includes('/maidkouciana')) {
-               ppath = "/maidkouciana/";
+          if (window.location.pathname.includes('/eightball')) {
+               ppath = "/eightball/";
           }
 
           if (lang === 'en') lang = '';
